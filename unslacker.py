@@ -4,6 +4,7 @@ import argparse
 import requests
 import json
 import os
+import time
 
 url = 'https://slack.com/api/'
 messages_limit = 1000
@@ -121,6 +122,7 @@ def dump_messages(token, channel, destination, delete_user):
             if response.status_code != 200:
                 raise Exception("Cannot delete message: got bad status code: {}"
                                 .format(response.status_code))
+            time.sleep(1)
 
     return users
 
@@ -188,6 +190,7 @@ def dump_files(token, channel, destination, delete_user):
             if response.status_code != 200:
                 raise Exception("Cannot delete file: got bad status code: {}"
                                 .format(response.status_code))
+            time.sleep(1)
 
 
 def dump_users(token, users, destination):
